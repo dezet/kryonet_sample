@@ -7,12 +7,12 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 
-public class SimpleServerApp {
+public class SimpleServerAppJ {
     public static void main(String[] args) {
-        Logger logger = LogManager.getLogger(SimpleServerApp.class);
+        Logger logger = LogManager.getLogger();
         logger.info("asdsadsa");
         Server server = new Server();
-        NetworkUtil.register(server.getKryo());
+        NetworkUtilJ.register(server.getKryo());
         server.start();
 
         try {
@@ -20,11 +20,11 @@ public class SimpleServerApp {
             server.addListener(new Listener() {
                 @Override
                 public void received(Connection connection, Object object) {
-                    if (object instanceof SimpleRequest) {
-                        SimpleRequest sq = (SimpleRequest) object;
+                    if (object instanceof SimpleRequestJ) {
+                        SimpleRequestJ sq = (SimpleRequestJ) object;
                         logger.info("Got some info from the socket: sq.getText()");
                         try {
-                            SimpleResponse sr = new SimpleResponse(Integer.parseInt(sq.getText()));
+                            SimpleResponse sr = new SimpleResponse(Double.parseDouble(sq.getText()));
                             connection.sendTCP(sr);
                         } catch (NumberFormatException e) {
                             logger.warn("Exception while trying to parse request text as number.");

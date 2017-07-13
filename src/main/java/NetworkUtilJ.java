@@ -1,15 +1,15 @@
 import com.esotericsoftware.kryo.Kryo;
 
-public class NetworkUtil {
+public class NetworkUtilJ {
 
-    public NetworkUtil() {
+    public NetworkUtilJ() {
     }
 
 
     public static void register(Kryo kryo) {
         kryo.register(String.class);
         kryo.register(Double.class);
-        kryo.register(SimpleRequest.class);
+        kryo.register(SimpleRequestJ.class);
         kryo.register(SimpleResponse.class);
     }
 
